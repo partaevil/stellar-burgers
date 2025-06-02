@@ -7,7 +7,15 @@ import { fetchIngredients } from '../../services/slices/ingredientsSlice';
 
 export const BurgerIngredients: FC = () => {
   const dispatch = useDispatch();
-  const { ingredients } = useSelector((state) => state.ingredients);
+  const { ingredients, loading: ingredientsLoading } = useSelector(
+    (state) => state.ingredients
+  );
+
+  useEffect(() => {
+    if (ingredients.length === 0) {
+      dispatch(fetchIngredients());
+    }
+  }, [dispatch]);
 
   const buns = ingredients.filter((ingredient) => ingredient.type === 'bun');
   const mains = ingredients.filter((ingredient) => ingredient.type === 'main');
@@ -24,10 +32,6 @@ export const BurgerIngredients: FC = () => {
   const [bunsRef, inViewBuns] = useInView({ threshold: 0 });
   const [mainsRef, inViewFilling] = useInView({ threshold: 0 });
   const [saucesRef, inViewSauces] = useInView({ threshold: 0 });
-
-  useEffect(() => {
-    dispatch(fetchIngredients());
-  }, [dispatch]);
 
   useEffect(() => {
     if (inViewBuns) {
