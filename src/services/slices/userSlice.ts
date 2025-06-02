@@ -39,8 +39,8 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setAuthChecked: (state) => {
-      state.isAuthChecked = true;
+    setAuthChecked: (state, action: PayloadAction<boolean>) => {
+      state.isAuthChecked = action.payload;
     },
     clearUserErrors: (state) => {
       state.loginUserError = null;
