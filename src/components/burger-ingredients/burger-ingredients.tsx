@@ -12,10 +12,8 @@ export const BurgerIngredients: FC = () => {
   );
 
   useEffect(() => {
-    // Only fetch if not already loading, there's no error, and ingredients are empty
     if (!loading && !error && ingredients.length === 0) {
       dispatch(fetchIngredients());
-      console.log('!');
     }
   }, [dispatch, ingredients.length, loading, error]);
 
