@@ -1,14 +1,5 @@
 import type { StorybookConfig } from '@storybook/react-webpack5';
 import path from 'path';
-import { fileURLToPath } from 'url';
-
-let __dirname: string;
-if (typeof __filename === 'undefined') {
-  const __filename = fileURLToPath(import.meta.url);
-  __dirname = path.dirname(__filename);
-} else {
-  __dirname = path.dirname(__filename);
-}
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -53,6 +44,8 @@ const config: StorybookConfig = {
     };
   },
   webpackFinal: async (config) => {
+    const rootDir = process.cwd();
+    
     if (config.module && config.module.rules) {
       config.module.rules.push({
         test: /\.(ts|tsx)$/,
@@ -69,14 +62,14 @@ const config: StorybookConfig = {
                 ['module-resolver', {
                   root: ['./src'],
                   alias: {
-                    '@pages': path.resolve(__dirname, '../src/pages'),
-                    '@components': path.resolve(__dirname, '../src/components'),
-                    '@ui': path.resolve(__dirname, '../src/components/ui'),
-                    '@ui-pages': path.resolve(__dirname, '../src/components/ui/pages'),
-                    '@utils-types': path.resolve(__dirname, '../src/utils/types'),
-                    '@api': path.resolve(__dirname, '../src/utils/burger-api.ts'),
-                    '@slices': path.resolve(__dirname, '../src/services/slices'),
-                    '@selectors': path.resolve(__dirname, '../src/services/selectors')
+                    '@pages': path.resolve(rootDir, 'src/pages'),
+                    '@components': path.resolve(rootDir, 'src/components'),
+                    '@ui': path.resolve(rootDir, 'src/components/ui'),
+                    '@ui-pages': path.resolve(rootDir, 'src/components/ui/pages'),
+                    '@utils-types': path.resolve(rootDir, 'src/utils/types'),
+                    '@api': path.resolve(rootDir, 'src/utils/burger-api.ts'),
+                    '@slices': path.resolve(rootDir, 'src/services/slices'),
+                    '@selectors': path.resolve(rootDir, 'src/services/selectors')
                   }
                 }]
               ]
@@ -90,14 +83,14 @@ const config: StorybookConfig = {
     if (config.resolve) {
       config.resolve.alias = {
         ...config.resolve.alias,
-        '@pages': path.resolve(__dirname, '../src/pages'),
-        '@components': path.resolve(__dirname, '../src/components'),
-        '@ui': path.resolve(__dirname, '../src/components/ui'),
-        '@ui-pages': path.resolve(__dirname, '../src/components/ui/pages'),
-        '@utils-types': path.resolve(__dirname, '../src/utils/types'),
-        '@api': path.resolve(__dirname, '../src/utils/burger-api.ts'),
-        '@slices': path.resolve(__dirname, '../src/services/slices'),
-        '@selectors': path.resolve(__dirname, '../src/services/selectors')
+        '@pages': path.resolve(rootDir, 'src/pages'),
+        '@components': path.resolve(rootDir, 'src/components'),
+        '@ui': path.resolve(rootDir, 'src/components/ui'),
+        '@ui-pages': path.resolve(rootDir, 'src/components/ui/pages'),
+        '@utils-types': path.resolve(rootDir, 'src/utils/types'),
+        '@api': path.resolve(rootDir, 'src/utils/burger-api.ts'),
+        '@slices': path.resolve(rootDir, 'src/services/slices'),
+        '@selectors': path.resolve(rootDir, 'src/services/selectors')
       };
     }
 
