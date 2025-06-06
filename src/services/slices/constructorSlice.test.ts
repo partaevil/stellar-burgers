@@ -1,4 +1,5 @@
 import constructorReducer, {
+  initialState,
   addIngredient,
   removeIngredient,
   moveIngredient,
@@ -7,11 +8,6 @@ import constructorReducer, {
 import { TConstructorIngredient } from '@utils-types';
 
 describe('constructorSlice', () => {
-  const initialState = {
-    bun: null,
-    ingredients: []
-  };
-
   const mockBun: TConstructorIngredient = {
     _id: '643d69a5c3f7b9001cfa093c',
     name: 'Краторная булка N-200i',

@@ -1,15 +1,11 @@
-import feedReducer, { fetchFeeds, fetchUserOrders } from './feedSlice';
+import feedReducer, {
+  initialState,
+  fetchFeeds,
+  fetchUserOrders
+} from './feedSlice';
 import { TOrder } from '@utils-types';
 
 describe('feedSlice', () => {
-  const initialState = {
-    orders: [],
-    total: 0,
-    totalToday: 0,
-    loading: false,
-    error: null
-  };
-
   const mockOrder: TOrder = {
     _id: '643d69a5c3f7b9001cfa093c',
     status: 'done',

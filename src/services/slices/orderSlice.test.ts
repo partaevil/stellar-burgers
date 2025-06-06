@@ -1,4 +1,5 @@
 import orderReducer, {
+  initialState,
   createOrder,
   fetchOrderByNumber,
   clearOrder,
@@ -8,13 +9,6 @@ import orderReducer, {
 import { TOrder } from '@utils-types';
 
 describe('orderSlice', () => {
-  const initialState = {
-    order: null,
-    orderRequest: false,
-    orderModalData: null,
-    error: null
-  };
-
   const mockOrder: TOrder = {
     _id: '643d69a5c3f7b9001cfa093c',
     status: 'done',

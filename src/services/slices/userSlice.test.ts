@@ -1,4 +1,5 @@
 import userReducer, {
+  initialState,
   getUser,
   setAuthChecked,
   clearUserErrors,
@@ -8,16 +9,6 @@ import userReducer, {
 import { TUser } from '@utils-types';
 
 describe('userSlice', () => {
-  const initialState = {
-    user: null,
-    isAuthenticated: false,
-    isAuthChecked: false,
-    loginUserRequest: false,
-    loginUserError: null,
-    registerUserRequest: false,
-    registerUserError: null
-  };
-
   const mockUser: TUser = {
     email: 'test@example.com',
     name: 'Test User'
